@@ -14,7 +14,4 @@ export class Article {
   create_time: Date;
   @Column()
   file_id: number;
-
-
-
 }

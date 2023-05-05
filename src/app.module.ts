@@ -1,12 +1,12 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { CategoryModule } from './category/category.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
 import { ArticleModule } from './article/article.module';
-
+import { FileModule } from './file/file.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -23,8 +23,9 @@ import { ArticleModule } from './article/article.module';
     UserModule,
     CategoryModule,
     ArticleModule,
+    FileModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
