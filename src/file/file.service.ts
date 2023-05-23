@@ -5,8 +5,6 @@ import { UpdateFileDto } from './dto/update-file.dto';
 import { File } from './entities/file.entity';
 import { Repository } from 'typeorm/repository/Repository';
 import { InjectRepository } from '@nestjs/typeorm';
-import { log } from 'console';
-
 @Injectable()
 export class FileService {
   constructor(
@@ -22,8 +20,11 @@ export class FileService {
     return `This action returns all file`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} file`;
+  async findOne(id: number) {
+    console.log(id, 'sss');
+    const { path } = await this.file.findOneBy({ id: id })
+    
+    return path
   }
 
   update(id: number, updateFileDto: UpdateFileDto) {

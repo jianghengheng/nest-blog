@@ -1,11 +1,17 @@
+/* eslint-disable prettier/prettier */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { HttpExceptionFilter } from './utils/error';
 import { TransformInterceptor } from './utils/success';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  // app.setGlobalPrefix('api/v1');
+  app.useStaticAssets('files',{
+    prefix:"/static"
+  });
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalInterceptors(new TransformInterceptor());
   const config = new DocumentBuilder()
