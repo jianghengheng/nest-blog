@@ -11,4 +11,8 @@ export class CreateFileDto {
     @IsString()
     @ApiProperty()
     size: string;
+    @ApiProperty()
+    show: string;
+  
+   
 }

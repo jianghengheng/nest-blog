@@ -10,4 +10,6 @@ export class File {
     path: string;
     @Column()
     size: string;
+    @Column()
+    show:string
 }

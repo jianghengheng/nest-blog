@@ -14,6 +14,8 @@ import { File } from './entities/file.entity';
     storage: diskStorage({
       destination: join(__dirname, '../../files'),
       filename:(_,file,callback)=>{
+     
+        
         const fileName = `${new Date().getTime() + extname(file.originalname)}`
         return callback(null,fileName)
       }

@@ -4,10 +4,14 @@ import { IsNumber, IsString, IsDate } from 'class-validator';
 export class CreateArticleDto {
   @ApiProperty()
   @IsString()
+  fileId: string;
+  @IsString()
   category: string;
-  @IsDate()
+  @IsNumber()
+  categoryId: number;
+  @IsString()
   @ApiProperty()
-  createTime: Date;
+  create_time: string;
   @IsString()
   @ApiProperty()
   title: string;

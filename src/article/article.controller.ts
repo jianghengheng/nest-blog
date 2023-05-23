@@ -10,12 +10,15 @@ import {
 import { ArticleService } from './article.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
+import { CategoryService } from 'src/category/category.service';
 
-@Controller('article')
+@Controller('/article')
 export class ArticleController {
-  constructor(private readonly articleService: ArticleService) {}
-
-  @Post()
+  constructor(
+    private readonly articleService: ArticleService,
+    private readonly categoryService: CategoryService,
+  ) {}
+  @Post('/addArticle')
   create(@Body() createArticleDto: CreateArticleDto) {
     return this.articleService.create(createArticleDto);
   }

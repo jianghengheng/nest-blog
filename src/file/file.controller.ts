@@ -11,11 +11,13 @@ export class FileController {
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  create(@UploadedFile() file) {
+  create(@UploadedFile() file) {  
     return this.fileService.create({
       name: file.originalname,
       path: file.path,
-      size: file.size
+      size: file.size,
+      show:file.filename
+     
     });
   }
 
@@ -25,13 +27,7 @@ export class FileController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string, @Res() res: Response) {
-    // res.sendFile(this.fileService.findOne(+id), (err) => {
-    //   if (!err) {
-
-    //     return;
-    //   }
-    // })
+  findOne(@Param('id') id: string,) {
     return this.fileService.findOne(+id);
   }
 

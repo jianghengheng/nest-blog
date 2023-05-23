@@ -12,8 +12,15 @@ export class FileService {
     private readonly file: Repository<File>,
   ) { }
   async create(createFileDto: CreateFileDto) {
+    /**
+     * 上传文件
+     */
     const { raw } = await this.file.insert(createFileDto)
-    return raw.insertId
+    /**
+     * 上传后返回文件
+     */
+    const {show}=  await this.file.findOneBy({ id: raw.insertId })
+    return show
   }
 
   findAll() {
@@ -21,10 +28,11 @@ export class FileService {
   }
 
   async findOne(id: number) {
-    console.log(id, 'sss');
-    const { path } = await this.file.findOneBy({ id: id })
+
+    const {show} = await this.file.findOneBy({ id: id })
     
-    return path
+    
+    return show
   }
 
   update(id: number, updateFileDto: UpdateFileDto) {

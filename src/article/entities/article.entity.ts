@@ -7,11 +7,13 @@ export class Article {
   @Column()
   category: string;
   @Column()
+  categoryId: number;
+  @Column()
   content: string;
   @Column()
   title: string;
   @Column()
-  create_time: Date;
+  create_time: string;
   @Column()
-  file_id: number;
+  fileId: string;
 }
