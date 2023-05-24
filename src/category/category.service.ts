@@ -10,14 +10,20 @@ export class CategoryService {
   constructor(
     @InjectRepository(Category)
     private readonly category: Repository<Category>,
-  ) {}
+  ) { }
   create(createCategoryDto: CreateCategoryDto) {
-    // ;
     return this.category.insert(createCategoryDto);
   }
 
   findAll() {
     return this.category.find();
+  }
+  changenum(id: number) {
+    this.category.findOneBy({ id }).then((res) => {
+      this.category.update(id, { num: res.num + 1 });
+    });
+
+    return 'ok';
   }
 
   findOne(id: number) {

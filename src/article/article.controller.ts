@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { ArticleService } from './article.service';
 import { CreateArticleDto } from './dto/create-article.dto';
@@ -17,9 +18,13 @@ export class ArticleController {
   constructor(
     private readonly articleService: ArticleService,
     private readonly categoryService: CategoryService,
-  ) {}
+  ) { }
   @Post('/addArticle')
   create(@Body() createArticleDto: CreateArticleDto) {
+    /**
+     * 增加分类数量
+     */
+    this.categoryService.changenum(createArticleDto.categoryId);
     return this.articleService.create(createArticleDto);
   }
 
@@ -28,9 +33,15 @@ export class ArticleController {
     return this.articleService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.articleService.findOne(+id);
+  @Get('/getArticleByCategoryId')
+  findArticleByCategoryId(@Query() { id }) {
+    console.log(id);
+    return this.articleService.findArticleByCategoryId(+id);
+  }
+  @Get('/getArticleById')
+  findArticleById(@Query() { id }) {
+    console.log(id);
+    return this.articleService.findArticleById(+id);
   }
 
   @Patch(':id')
