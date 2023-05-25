@@ -8,8 +8,6 @@ export class TransformInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
       map((data, s) => {
-        console.log();
-
         if (typeof data == 'string') {
           return data
         } else {

@@ -26,8 +26,6 @@ export class UserController {
 
   @Get('/a')
   findAll() {
-    console.log(this.categoryServe.findAll());
-
     return this.userService.findAll();
   }
 

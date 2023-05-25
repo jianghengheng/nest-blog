@@ -12,8 +12,6 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    console.log(this.userService.findAll());
-
     return this.appService.getHello();
   }
 }

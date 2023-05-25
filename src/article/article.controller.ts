@@ -35,12 +35,10 @@ export class ArticleController {
 
   @Get('/getArticleByCategoryId')
   findArticleByCategoryId(@Query() { id }) {
-    console.log(id);
     return this.articleService.findArticleByCategoryId(+id);
   }
   @Get('/getArticleById')
   findArticleById(@Query() { id }) {
-    console.log(id);
     return this.articleService.findArticleById(+id);
   }
 

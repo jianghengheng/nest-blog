@@ -7,6 +7,7 @@ import { CategoryModule } from './category/category.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ArticleModule } from './article/article.module';
 import { FileModule } from './file/file.module';
+import { CommentModule } from './comment/comment.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -24,6 +25,7 @@ import { FileModule } from './file/file.module';
     CategoryModule,
     ArticleModule,
     FileModule,
+    CommentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
