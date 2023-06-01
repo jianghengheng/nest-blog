@@ -12,6 +12,7 @@ import { CommentModule } from './comment/comment.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
+      // host: '82.156.140.196',
       host: 'localhost',
       port: 3306,
       username: 'root',

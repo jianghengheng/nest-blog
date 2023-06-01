@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
+type NumType = 'addPraise' | 'cancelPraise' | 'addRead';
 @Controller('comment')
 export class CommentController {
   constructor(private readonly commentService: CommentService) { }
@@ -19,14 +20,14 @@ export class CommentController {
   }
 
   @Get()
-  findAll() {
+  findAll() { 
     return this.commentService.findAll();
   }
   @Post('/addPraiseNum')
-  addPraiseNum(@Body() data: { id: number; num: number }) {
+  addPraiseNum(@Body() data: { id: number; num: number; type: NumType }) {
     console.log(data);
 
-    return this.commentService.addPraiseNum(data.id, data.num);
+    return this.commentService.changeNum(data.id, data.num, data.type);
   }
   @Get('/findByArticleId')
   findOne(@Query() { id }) {
