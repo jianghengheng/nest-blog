@@ -12,7 +12,7 @@ import { File } from './entities/file.entity';
 
   imports: [MulterModule.register({
     storage: diskStorage({
-      destination: join(__dirname, '../../files'),
+      destination: join(__dirname, '../files'),
       filename:(_,file,callback)=>{
      
         
