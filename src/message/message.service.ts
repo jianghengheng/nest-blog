@@ -4,7 +4,9 @@ import { CreateMessageDto } from './dto/create-message.dto';
 import { Message } from './entities/message.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-type NumType='addPraise'|'cancelPraise'|'addRead'
+
+import { Pagination } from 'nestjs-typeorm-paginate';
+
 @Injectable()
 export class MessageService {
   constructor(
@@ -16,35 +18,22 @@ export class MessageService {
     return '添加成功';
   }
 
-  findAll() {
-    return `This action returns all comment`;
-  }
+  async findAll(pageSize: number, pageNumber: number) {
+    const startIndex = (pageSize - 1) * pageNumber;
+    const endIndex = pageSize * pageNumber;
+    const data = await this.message.find()
 
-  async findByArticleId(id: number) {
-    // const data = await this.message.findBy({ articleId: id });
-    return 'keyi'
+    return {
+      total: this.treeData(data).slice(startIndex,endIndex).length,
+      records: this.treeData(data).slice()
+
+    }
   }
   remove(id: number) {
     this.message.delete({ id })
     return {
       data: '删除成功'
     };
-  }
-  async changeNum(id: number, num: number, type: NumType) {
-    let data = {}
-    if (type == "addPraise") {
-      data = { praiseNum: num + 1 }
-    } else if (type == "cancelPraise") {
-      data = { praiseNum: num - 1 }
-    } else {
-      data = {
-        readNum: num + 1
-      }
-    }
-    await this.message.update(id, data)
-    return {
-      num: num + 1
-    }
   }
   treeData(arr: any[], pid = null) {
     // 判断是否是数组 不是数组就返回 []
