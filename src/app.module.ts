@@ -8,12 +8,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ArticleModule } from './article/article.module';
 import { FileModule } from './file/file.module';
 import { CommentModule } from './comment/comment.module';
+import { MessageModule } from './message/message.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
       // host: '82.156.140.196',
-      host: 'localhost',
+      host: '124.222.59.119',
       port: 3306,
       username: 'root',
       password: '123456',
@@ -27,6 +28,8 @@ import { CommentModule } from './comment/comment.module';
     ArticleModule,
     FileModule,
     CommentModule,
+    MessageModule
+    
   ],
   controllers: [AppController],
   providers: [AppService],
