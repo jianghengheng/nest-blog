@@ -17,7 +17,7 @@ import { MessageModule } from './message/message.module';
       host: '124.222.59.119',
       port: 3306,
       username: 'root',
-      password: '123456',
+      password: 'woshijiangheng',
       database: 'jh',
       logging: true,
       autoLoadEntities: true, // 使用这个配置自动导入entities
